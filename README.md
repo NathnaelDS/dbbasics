@@ -5,7 +5,7 @@
 ### Description:
 Where all the data in a database is stored. A database consists of one or more tables.  Each table is made up of rows and columns. Columns are defined to hold specific type of data. Rows contain the set of data.
 ### Implementation:
-'''
+```sql
 CREATE TABLE Persons (
 	PersonID int,
 	LastName varchar(255),
@@ -13,7 +13,7 @@ CREATE TABLE Persons (
 	Address varchar(255),
 	City varchar(255) 
 );
-'''
+```
 ### Code Explanation:
 Creates a table called Persons which has columns PersonId, LastName, FirstName, Address and City. Also it defines the type of and size of the data to be input.
  
