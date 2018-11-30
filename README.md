@@ -1,7 +1,6 @@
 # dbbasics
 
 ## Title: Table
-==============
 ### Description:
 Where all the data in a database is stored. A database consists of one or more tables.  Each table is made up of rows and columns. Columns are defined to hold specific type of data. Rows contain the set of data.
 ### Implementation:
@@ -17,14 +16,14 @@ CREATE TABLE Persons (
 ### Code Explanation:
 Creates a table called Persons which has columns PersonId, LastName, FirstName, Address and City. Also it defines the type of and size of the data to be input.
  
- 
-## Title: Trigger
 =================
+
+## Title: Trigger
 ### Description:
 It is a special stored procedure that gets run when specific actions occur within a database. Usually they are defined to run when changes are made to a table’s data.
 ### Implementation:
-
-           	CREATE [OR REPLACE ] TRIGGER trigger_name 
+```sql
+CREATE [OR REPLACE ] TRIGGER trigger_name 
 {BEFORE | AFTER | INSTEAD OF } 
 {INSERT [OR] | UPDATE [OR] | DELETE} 
 [OF col_name] 
@@ -39,7 +38,7 @@ Executable-statements
 EXCEPTION
 Exception-handling-statements
 END;
- 
+``` 
 ### Code Explanation:
 CREATE [OR REPLACE] TRIGGER trigger_name − Creates or replaces an existing trigger with the trigger_name.
 {BEFORE | AFTER | INSTEAD OF} − This specifies when the trigger will be executed. The INSTEAD OF clause is used for creating trigger on a view.
@@ -53,26 +52,30 @@ WHEN (condition) − This provides a condition for rows for which the trigger wo
 ### Description:
 A database index allows a query to efficiently retrieve data from a database.  Indexes are related to specific tables and consist of one or more keys.  A table can have more than one index built from it.  The keys are the values we want to look up in the index.  The keys are based on the tables’ columns.  By comparing keys to the index it is possible to find one or more database records with the same value.
 ### Implementation:
+```sql
 CREATE INDEX idx_lastname ON Persons (LastName);
+```
 ### Code Explanation:
-           	It makes an index called idx_lastname on the Persons table using LastName as its key.
+It makes an index called idx_lastname on the Persons table using LastName as its key.
  
+================= 
 
 ## Title:View
-=============
 ### Description:
 A database view is a searchable object in a database that is defined by a query. It is sometimes called a virtual table, but it does not store any data. A view can combine data from multiple tables by using joins or it can simply be subset of one table.
 ### Implementation:
+```sql
 CREATE VIEW NewBooks AS
 SELECT ISBN, Title, Author
 FROM Books
 WHERE IsNew = 1
+```
 ### Code Explanation:
 We create views by using the CREATE VIEW command followed by a query that is used to construct the virtual table we want.
  
+================
 
 ## Title: Cursor
-================
 ### Description:
 SQL is a set-based language. This means operations are completed on all rows of a result. But when one wants to do an operation row by row, database cursors are used.
 A cursor is like a pointer to a specific row within a query result. It can be moved from one row to the next (or the previous row depending on the type of cursor). There are two main categories of cursors: scrolling capabilities and ability to detect changes made to the database.
@@ -85,6 +88,7 @@ It updates every row in the table EmployeeTable where the EmployeeID is less tha
 But using a cursor, we iterate over the rows and updating them as we go. Rows will be updated independently.
  
 ### Implementation:
+```sql
 DECLARE @businessEntityID as INT;
 DECLARE @firstName as NVARCHAR(50),
     	@lastName as NVARCHAR(50);
@@ -110,7 +114,7 @@ BEGIN
 END
 CLOSE @personCursor;
 DEALLOCATE @personCursor;
- 
+```
 ### Code Explanation:
 Declare Variables
 Declare Cursor
@@ -119,10 +123,9 @@ Test Status and Loop
 Close Cursor
 Deallocate Cursor
  
-
+=================
  
 ## Title: Record
-================
 ### Description:
 A database record refers to a complete set of information, a collection of fields about the same person/item/object.  A database record can be thought of as a row of information within a database table.
 Implementation:
@@ -130,9 +133,9 @@ Implementation:
 ### Code Explanation:
 It selects and returns the complete set of records within the EmployeeTable. Each row within the result from the query is a record.
  
- 
-## Title: Package
 =================
+
+## Title: Package
 ### Description:
 A package is a group of related procedures and functions, together with the cursors and variables they use, stored together in the database for continued use as a unit. Similar to standalone procedures and functions, packaged procedures and functions can be called explicitly by applications or users.
 ### Implementation:
@@ -151,11 +154,13 @@ END bank_transactions;
 ### Code Explanation:
            	There are two parts to a package. First part is declaration. Declaration of related procedures, variables, and cursors. Second part is definition. Definition of the above related procedures, variables, and cursors.
  
-## Title: Procedure
 ===================
+
+## Title: Procedure
 ### Description:
 Procedures are used as scripts. They run series of commands for you and you can schedule them to run at certain times. They don’t take arguments and don’t return values.
 ### Implementation:
+```s
            	CREATE PROCEDURE HumanResources.uspFindEmployee
                                                         	@BusinessEntityID [int]
            	AS
