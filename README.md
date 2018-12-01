@@ -270,8 +270,11 @@ Constraints are the rules enforced on the data columns of a table. These are use
 - Not Null - Ensures that a column cannot have NULL value.
 - Check - The CHECK constraint ensures that all the values in a column satisfies certain conditions.
 - Unique key - Ensures that all values in a column are different.
+
 ### Implementation:
+
 ```sql
+
 CREATE TABLE Persons (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
@@ -293,6 +296,7 @@ CREATE TABLE Persons (
     FirstName varchar(255),
     Age int
 );
+
 ```
 ### Code Explanation:
 We use these constraints when we are creating Tables and these constraints are the rules governing what kind of data is acceptable in those columns. The code above shows normal table creation with the use of constraints.
