@@ -42,11 +42,17 @@ END;
 ### Code Explanation:
 CREATE [OR REPLACE] TRIGGER trigger_name − Creates or replaces an existing trigger with the trigger_name.
 {BEFORE | AFTER | INSTEAD OF} − This specifies when the trigger will be executed. The INSTEAD OF clause is used for creating trigger on a view.
+
 {INSERT [OR] | UPDATE [OR] | DELETE} − This specifies the DML operation.
+
 [OF col_name] − This specifies the column name that will be updated.
+
 [ON table_name] − This specifies the name of the table associated with the trigger.
+
 [REFERENCING OLD AS o NEW AS n] − This allows you to refer new and old values for various DML statements, such as INSERT, UPDATE, and DELETE.
+
 [FOR EACH ROW] − This specifies a row-level trigger, i.e., the trigger will be executed for each row being affected. Otherwise the trigger will execute just once when the SQL statement is executed, which is called a table level trigger.
+
 WHEN (condition) − This provides a condition for rows for which the trigger would fire. This clause is valid only for row-level triggers.
 
 ==================
@@ -277,11 +283,11 @@ CREATE TABLE Persons (
 ```
 ### Code Explanation:
 We use these constraints when we are creating Tables and these constraints are the rules governing what kind of data is acceptable in those columns. The code above shows normal table creation with the use of constraints.
-           	NOT NULL Constraint − Ensures that a column cannot have NULL value.
+NOT NULL Constraint − Ensures that a column cannot have NULL value.
 UNIQUE Constraint − Ensures that all values in a column are different.
 PRIMARY Key − Uniquely identifies each row/record in a database table.
 FOREIGN Key − Uniquely identifies a row/record in any of the given database table.
 CHECK Constraint − The CHECK constraint ensures that all the values in a column satisfies certain conditions.
-INDEX − Used to create and retrieve data fro
+
  
 
