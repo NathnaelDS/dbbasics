@@ -48,6 +48,9 @@ CREATE [OR REPLACE] TRIGGER trigger_name − Creates or replaces an existing tri
 [REFERENCING OLD AS o NEW AS n] − This allows you to refer new and old values for various DML statements, such as INSERT, UPDATE, and DELETE.
 [FOR EACH ROW] − This specifies a row-level trigger, i.e., the trigger will be executed for each row being affected. Otherwise the trigger will execute just once when the SQL statement is executed, which is called a table level trigger.
 WHEN (condition) − This provides a condition for rows for which the trigger would fire. This clause is valid only for row-level triggers.
+
+==================
+
 ## Title: Index
 ### Description:
 A database index allows a query to efficiently retrieve data from a database.  Indexes are related to specific tables and consist of one or more keys.  A table can have more than one index built from it.  The keys are the values we want to look up in the index.  The keys are based on the tables’ columns.  By comparing keys to the index it is possible to find one or more database records with the same value.
@@ -60,7 +63,7 @@ It makes an index called idx_lastname on the Persons table using LastName as its
  
 ================= 
 
-## Title:View
+## Title: View
 ### Description:
 A database view is a searchable object in a database that is defined by a query. It is sometimes called a virtual table, but it does not store any data. A view can combine data from multiple tables by using joins or it can simply be subset of one table.
 ### Implementation:
@@ -160,7 +163,7 @@ END bank_transactions;
 ### Description:
 Procedures are used as scripts. They run series of commands for you and you can schedule them to run at certain times. They don’t take arguments and don’t return values.
 ### Implementation:
-```s
+```sql
            	CREATE PROCEDURE HumanResources.uspFindEmployee
                                                         	@BusinessEntityID [int]
            	AS
@@ -175,15 +178,17 @@ HireDate
                           	WHERE BusinessEntityID = @BusinessEntityID
            	END
            	
- 
+```
 ### Code Explanation:
-           	First the procedure name is stored. Then the variable parameter is declared. The query that is to be run is stated using the parameter we declared earlier inside of it (the query). Then we end the procedure with END
- 
-## Title: Function
+First the procedure name is stored. Then the variable parameter is declared. The query that is to be run is stated using the parameter we declared earlier inside of it (the query). Then we end the procedure with END
+
 ==================
+
+## Title: Function
 ### Description:
 Functions are used as methods. You pass it something and it returns a result. Should be small and fast - does it on the fly. Functions can’t call stored procedures, but stored procedures can call functions.
 ### Implementation:
+```sql
 CREATE FUNCTION MyFunction (@someValue INTEGER) RETURNS INTEGER
 AS
 BEGIN
@@ -195,43 +200,50 @@ BEGIN
  
    RETURN @retval
 END
- 
+ ```
 ### Code Explanation:
 First the function name is stored. We pass it a parameter and specific the return type. The return variable is declared. The query is run using the return variable we declared. Then we return the variable and end the procedure with END.
 
+====================
  
 ## Title: Object
 ### Description:
 A database object in a relational database is a data structure used to either store or reference data. The most common object that people interact with is the table. Other objects are indexes, stored procedures, sequences, views and many more. An object type is the concept of the object. Like the concept of a table or index. The object instance is an instance of the object. A certain table, for example.
  
+==================== 
  
 ## Title: Database Link
 ### Description:
 A database link is a schema object in one database that enables you to access objects on another database. The other database need not be the same Database system. After you have created a database link, you can use it to refer to tables and views on the other database. In SQL statements, you can refer to a table or view on the other database by appending @dblink to the table or view name. You can query a table or view on the other database with the SELECT statement. You can also access remote tables and views using any INSERT, UPDATE, DELETE, or LOCK TABLE statement.
-Implementation:
+### Implementation:
+```sql
 CREATE DATABASE LINK local
 CONNECT TO hr IDENTIFIED BY hr
 USING 'local';
- 
+ ```
 ### Code Explanation:
-           	Create database link using CREATE DATABASE LINK and the specifying the database we are connecting to.
- 
-## Title: Sequence
+Create database link using CREATE DATABASE LINK and the specifying the database we are connecting to.
+
 ==================
+
+## Title: Sequence
 ### Description:
 This database object is used to create a sequence in database. A sequence is a user created database object that can be shared by multiple users to generate unique integers. A typical usage for sequences is to create a primary key value, which must be unique for each row. The sequence is generated and incremented (or decremented) by an internal Oracle routine.
 ### Implementation:
+```sql
 CREATE SEQUENCE dept_deptid_seq
                     	INCREMENT BY 10
                     	START WITH 120
                     	MAXVALUE 9999
                     	NOCACHE
                     	NOCYCLE;
+```
 ### Code Explanation:
-           	Create sequence, give it a name and then define the increment value, the starting value, the max value
- 
-## Title: Constraint
+Create sequence, give it a name and then define the increment value, the starting value, the max value
+
 ====================
+
+## Title: Constraint
 ### Description:
 Constraints are the rules enforced on the data columns of a table. These are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the database.
 Primary Key - The primary key consists of one or more columns whose data contained within is used to uniquely identify each row in the table.  You can think of the primary key as an address.  If the rows in a table were mailboxes, then the primary key would be the listing of street addresses. When a primary key is composed of multiple columns, the data from each column is used to determine whether a row is unique.
@@ -240,6 +252,7 @@ Not Null - Ensures that a column cannot have NULL value.
 Check - The CHECK constraint ensures that all the values in a column satisfies certain conditions.
 Unique key - Ensures that all values in a column are different.
 ### Implementation:
+```sql
 CREATE TABLE Persons (
     ID int NOT NULL,
     LastName varchar(255) NOT NULL,
@@ -261,6 +274,7 @@ CREATE TABLE Persons (
     FirstName varchar(255),
     Age int
 );
+```
 ### Code Explanation:
 We use these constraints when we are creating Tables and these constraints are the rules governing what kind of data is acceptable in those columns. The code above shows normal table creation with the use of constraints.
            	NOT NULL Constraint − Ensures that a column cannot have NULL value.
